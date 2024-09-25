@@ -1,0 +1,10 @@
+{
+  "routes": [
+    "/",
+    "/changePassword",
+    "/signin",
+    "/signup",
+    "/timeline",
+    "/uploadPhoto"
+  ]
+}

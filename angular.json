@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/social-app",
+            "outputPath": "docs",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -30,9 +30,17 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-spinner/animations/ball-elastic-dots.css",
+              "node_modules/ngx-spinner/animations/ball-scale-multiple.css",
+              "node_modules/ngx-toastr/toastr.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "node_modules/flowbite/dist/flowbite.min.css",
               "src/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/@fortawesome/fontawesome-free/js/all.min.js",
+              "./node_modules/flowbite/dist/flowbite.min.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -44,8 +52,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -102,5 +110,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "c1446ced-8794-48d3-b6d1-33db98a9535a"
   }
 }

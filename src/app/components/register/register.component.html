@@ -1,0 +1,136 @@
+<div class="container mx-auto px-4 md:px-6 lg:px-8">
+    <div class="w-full max-w-4xl mx-auto shadow p-5 mb-10 mt-10 bg-white">
+        <h1 class="text-xl sm:text-2xl pt-6 sm:pt-10 main-color font-semibold">Register</h1>
+        <form class="pt-6 sm:pt-10 pb-10" [formGroup]="RegisterForm" (ngSubmit)="submitRegisterForm()">
+            <!-- Name Field -->
+            <div class="mb-5">
+                <label for="name" class="block mb-1 text-sm font-medium">Name:</label>
+                <input [ngClass]="{
+            'is-valid': !RegisterForm.get('name')?.errors && (RegisterForm.get('name')?.touched || RegisterForm.get('name')?.dirty),
+            'is-invalid': RegisterForm.get('name')?.errors && (RegisterForm.get('name')?.touched || RegisterForm.get('name')?.dirty)
+          }" type="text" id="name" formControlName="name"
+                    class="w-full p-2.5 text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+
+                <div
+                    *ngIf="RegisterForm.get('name')?.errors && (RegisterForm.get('name')?.touched || RegisterForm.get('name')?.dirty)">
+                    <div class="bg-red-200 p-2 mt-2 mb-3 rounded">
+                        <p *ngIf="RegisterForm.get('name')?.hasError('required')">Name is required</p>
+                        <p *ngIf="RegisterForm.get('name')?.hasError('minlength')">Name should be more than or equal to
+                            3 chars</p>
+                        <p *ngIf="RegisterForm.get('name')?.hasError('maxlength')">Name should be less than or equal to
+                            20 chars</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Email Field -->
+            <div class="mb-5">
+                <label for="email" class="block mb-1 text-sm font-medium">Email:</label>
+                <input [ngClass]="{
+            'is-valid': !RegisterForm.get('email')?.errors && (RegisterForm.get('email')?.touched || RegisterForm.get('email')?.dirty),
+            'is-invalid': RegisterForm.get('email')?.errors && (RegisterForm.get('email')?.touched || RegisterForm.get('email')?.dirty)
+          }" type="email" id="email" formControlName="email"
+                    class="w-full p-2.5 text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+
+                <div
+                    *ngIf="RegisterForm.get('email')?.errors && (RegisterForm.get('email')?.touched || RegisterForm.get('email')?.dirty)">
+                    <div class="bg-red-200 p-2 mt-2 mb-3 rounded">
+                        <p *ngIf="RegisterForm.get('email')?.hasError('required')">Email is required</p>
+                        <p *ngIf="RegisterForm.get('email')?.hasError('email')">Enter a valid email</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Password Field -->
+            <div class="mb-5">
+                <label for="password" class="block mb-1 text-sm font-medium">Password:</label>
+                <input [ngClass]="{
+            'is-valid': !RegisterForm.get('password')?.errors && (RegisterForm.get('password')?.touched || RegisterForm.get('password')?.dirty),
+            'is-invalid': RegisterForm.get('password')?.errors && (RegisterForm.get('password')?.touched || RegisterForm.get('password')?.dirty)
+          }" type="password" id="password" formControlName="password"
+                    class="w-full p-2.5 text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+
+                <div
+                    *ngIf="RegisterForm.get('password')?.errors && (RegisterForm.get('password')?.touched || RegisterForm.get('password')?.dirty)">
+                    <div class="bg-red-200 p-2 mt-2 mb-3 rounded">
+                        <p *ngIf="RegisterForm.get('password')?.hasError('required')">Password is required</p>
+                        <p *ngIf="RegisterForm.get('password')?.hasError('pattern')">At least one uppercase letter
+                            (A-Z). </p>
+                        <p *ngIf="RegisterForm.get('password')?.hasError('pattern')">At least one lowercase letter
+                            (a-z).</p>
+                        <p *ngIf="RegisterForm.get('password')?.hasError('pattern')">At least one lowercase number
+                            (0-9).</p>
+                        <p *ngIf="RegisterForm.get('password')?.hasError('pattern')">At least one symbol (#?!$%^&*-).
+                        </p>
+                        <p *ngIf="RegisterForm.get('password')?.hasError('pattern')">The word must be 8 or more
+                            characters long.</p>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Re-Password Field -->
+            <div class="mb-5">
+                <label for="rePassword" class="block mb-1 text-sm font-medium">Confirm Password:</label>
+                <input [ngClass]="{
+            'is-valid': !RegisterForm.get('rePassword')?.errors && (RegisterForm.get('rePassword')?.touched || RegisterForm.get('rePassword')?.dirty),
+            'is-invalid': RegisterForm.get('rePassword')?.errors && (RegisterForm.get('rePassword')?.touched || RegisterForm.get('rePassword')?.dirty  )
+          }" type="password" id="rePassword" formControlName="rePassword"
+                    class="w-full p-2.5 text-sm rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 bg-gray-50">
+
+                <div
+                    *ngIf="RegisterForm.errors?.['mismatch'] && (RegisterForm.get('rePassword')?.touched || RegisterForm.get('rePassword')?.dirty)">
+                    <div class="bg-red-200 p-2 mt-2 mb-3 rounded">
+                        <p *ngIf="RegisterForm.get('rePassword')?.hasError('required')">Confirm Password is required</p>
+                        <p *ngIf="RegisterForm.errors?.['mismatch']">Password does not match</p>
+                    </div>
+                </div>
+            </div>
+            <!-- DateOfBirth Field -->
+            <div class="mb-5">
+                <label for="dateOfBirth" class="block mb-1 text-sm font-medium">Date of Birth:</label>
+                <input formControlName="dateOfBirth" id="dateOfBirth" type="date"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                    placeholder="Select date">
+
+                <div *ngIf="RegisterForm.get('dateOfBirth')?.errors && (RegisterForm.get('dateOfBirth')?.touched || RegisterForm.get('dateOfBirth')?.dirty)"
+                    class="bg-red-200 p-2 mt-2 mb-3 rounded">
+                    <div *ngIf="RegisterForm.get('dateOfBirth')?.hasError('required')">
+                        <p>Date of Birth is Required</p>
+                    </div>
+                    <div *ngIf="RegisterForm.get('dateOfBirth')?.hasError('pattern')">
+                        <p>Date of Birth is not valid</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Gender Field -->
+            <div class="mb-5">
+                <div class="flex-1">
+                    <label class="text-sm font-medium text-gray-700 dark:text-white" for="gender">Gender:</label>
+                    <div id="gender" class="flex space-x-4">
+                        <div class="flex items-center pl-4">
+                            <input id="genderMale" type="radio" formControlName="gender" value="male"
+                                class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
+                            <label for="genderMale"
+                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Male</label>
+                        </div>
+                        <div class="flex items-center pl-4">
+                            <input id="genderFemale" type="radio" formControlName="gender" value="female"
+                                class="h-4 w-4 border-gray-300 text-blue-600 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800" />
+                            <label for="genderFemale"
+                                class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Female</label>
+                        </div>
+                    </div>
+                    <div
+                        *ngIf="RegisterForm.get('gender')?.errors && (RegisterForm.get('gender')?.touched || RegisterForm.get('gender')?.dirty)">
+                        <div class="bg-red-200 p-2 mt-2 mb-3 rounded">
+                            <p *ngIf="RegisterForm.get('gender')?.hasError('required')">Gender is required</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Submit Button -->
+            <div class="mb-5">
+                <button type="submit"
+                    class="w-full py-2.5 px-5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
