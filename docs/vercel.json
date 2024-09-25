@@ -1,9 +1,8 @@
 {
-    "public": true,
     "routes": [
       {
         "src": "/(.*)",
-        "docs": "/index.html"
+        "dest": "/index.html"
       }
     ]
   }
